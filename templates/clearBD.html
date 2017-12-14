@@ -1,0 +1,15 @@
+<form action=/clearBD method="post">
+   <table border="1" style="color: black;border: 1px solid #000000; border-collapse: collapse;" cellpadding="4">
+        {%- for row in static%}
+          <tr>
+          {%- for column in row %}
+            <td>{{ column }}</td>
+          {%- endfor %}
+          </tr>
+        {%- endfor %}
+        </table>
+    <p>Введите количество дней<Br>
+        <input name="day">
+            <input type="submit" value="Очистить">
+        <p>{{ result }}</p>
+</form>

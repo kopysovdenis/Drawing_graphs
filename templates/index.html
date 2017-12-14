@@ -1,0 +1,22 @@
+<form action="/echo" method="POST">
+    <input name="text">
+    <input type="submit" value="Запрос">
+    <p>Ответ<Br>
+        <table border="1" style="border: 1px solid #000000; border-collapse: collapse;" cellpadding="4">
+        {%- for row in values%}
+          <tr>
+          {%- for column in row %}
+            <td>{{ column }}</td>
+          {%- endfor %}
+          </tr>
+        {%- endfor %}
+        </table>
+    <p> {{ Errors }}</p>
+</form>
+
+<form action=http://127.0.0.1:5000/clearBD method="get">
+    <input type="submit" value="Очистка базы">
+</form>
+<form action=http://127.0.0.1:5000/graphics method="get">
+    <input type="submit" value="Графики">
+</form>
