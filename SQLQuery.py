@@ -1,6 +1,4 @@
 import cx_Oracle
-import sqlalchemy
-from sqlalchemy import create_engine, text
 
 host = '192.168.50.24'
 port = 1521
