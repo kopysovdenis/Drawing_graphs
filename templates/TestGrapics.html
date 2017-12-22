@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Graphics</title>
+    <script src='static/Chart.min.js'>
+    </script>
+</head>
+
+<body>
+<div class="chartjs-size-monitor"
+     style="position: absolute;
+     left: 0px;
+     top: 0px;
+     right: 0px;
+     bottom: 0px;
+     overflow: hidden;
+     pointer-events: none;
+     visibility: hidden;
+     z-index: -1;">
+        <div class="chartjs-size-monitor-expand" style="position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        bottom:0;
+        overflow:hidden;
+        pointer-events:none;
+        visibility:hidden;
+        z-index:-1;">
+            <div style="position:absolute;
+            width:1000000px;
+            height:1000000px;
+            left:0;
+            top:0">
+            </div>
+        </div>
+    <div class="chartjs-size-monitor-shrink" style="position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    overflow:hidden;
+    pointer-events:none;
+    visibility:hidden;
+    z-index:-1;">
+        <div style="position:absolute;
+        width:200%;
+        height:200%;
+        left:0;
+        top:0">
+        </div>
+    </div>
+</div>
+<form action=http://127.0.0.1:5000/graphics method="get">
+    <input type="submit" value="Вернуться">
+  </form>
+  <form action=http://127.0.0.1:5000 method="get">
+    <input type="submit" value="Главная">
+  </form>
+<canvas id="line-chart" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
+<canvas id="line-chartAll" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
+<script>
+    Chart.defaults.global.elements.line.fill = false;
+    Chart.defaults.global.responsive = false;
+    Chart.defaults.global.lineCap = 'round';
+    new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: [{% for item in labels1 %}
+                       "{{item}}",
+                      {% endfor %}],
+    datasets: [{
+        data: [{% for item in NewValues %}
+                          {{item}},
+                        {% endfor %}],
+        label: '{{ NewLegend }}',
+        borderColor: "#3e95cd",
+        backgroundColor: "#3e95cd",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      }, {
+        data: [{% for item in CheckValues %}
+                          {{item}},
+                        {% endfor %}],
+        label: '{{ CheckLegend }}',
+        borderColor: "#8e5ea2",
+        backgroundColor: "#8e5ea2",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false,
+        showLines: true
+      }, {
+        data: [{% for item in EnrollValues %}
+                          {{item}},
+                        {% endfor %}],
+        label: '{{ EnrollLegend }}',
+        borderColor: "#3cba9f",
+        backgroundColor: "#3cba9f",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false,
+        showLines: true
+      }, {
+        data: [{% for item in EnrolledValues %}
+                          {{item}},
+                        {% endfor %}],
+        label: '{{ EnrolledLegend }}',
+        borderColor: "#e8c3b9",
+        backgroundColor: "#e8c3b9",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false,
+        showLines: true
+      }
+    ]
+  },
+  options: {
+      legend: {
+          display: true,
+          position: 'bottom'
+      },
+    title: {
+      display: true,
+      text: 'Digradation'
+    }
+  }
+});
+    </script>
+<script>
+    Chart.defaults.global.elements.line.fill = false;
+    Chart.defaults.global.responsive = false;
+    new Chart(document.getElementById("line-chartAll"), {
+  type: 'line',
+  data: {
+    labels: [{% for item in labels1 %}
+                       "{{item}}",
+                      {% endfor %}],
+    datasets: [{
+        data: [{% for item in Values1 %}
+                          {{item1}},
+                        {% endfor %}],
+        label: '{{ Legend1 }}',
+        borderColor: "#3e95cd",
+        backgroundColor: "#3e95cd",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      }, {
+        data: [{% for item in Values2 %}
+                          {{item}},
+                        {% endfor %}],
+        label: '{{ Legend2 }}',
+        borderColor: "#8e5ea2",
+        backgroundColor: "#8e5ea2",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      }, {
+        data: [{% for item in Values3 %}
+                          {{item}},
+                        {% endfor %}],
+        label: '{{ Legend3 }}',
+        borderColor: "#3cba9f",
+        backgroundColor: "#3cba9f",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      }, {
+        data: [{% for item in Values4 %}
+                          {{item}},
+                        {% endfor %}],
+        label: '{{ Legend4 }}',
+        borderColor: "#e8c3b9",
+        backgroundColor: "#e8c3b9",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      }
+    ]
+  },
+  options: {
+      legend: {
+          display: true,
+          position: 'bottom'
+      },
+    title: {
+      display: true,
+      text: 'Digradation'
+    }
+  }
+});
+    </script>
+</body>
+</html>
