@@ -1,5 +1,6 @@
 import cx_Oracle
 import pandas as pd
+import numpy as np
 
 host = '192.168.50.24'
 port = 1521
@@ -241,6 +242,22 @@ class sqlQuery():
 
     def getUTL(self,filess):
         VarCh1 = pd.read_csv(filess, sep=';', header=None,
-                             names=['Time', 'New', 'Check', 'Enroll', 'Enrolled', 'NewALL', 'CheckALL', 'EnrollALL',
-                                    'wqrw'])
+                             names=['Time', 'New', 'Check', 'Enroll', 'Enrolled'])
         return VarCh1
+
+    def getEnrolled10(self,filess):
+        VarCh1 = pd.read_csv(filess, sep=';', header=None,
+                             names=['Time', 'New', 'Check', 'Enroll', 'Enrolled'])
+        count = 0
+        envereds10 = []
+        envereds11 = []
+        VarCh2 = np.array(VarCh1['Enrolled'])
+
+
+        for x in VarCh2:
+            envereds10.append(VarCh2[count:count + 10].sum())
+            count += 1
+
+        for x in envereds10:
+            envereds11.append(int(x)*6)
+        return envereds11

@@ -1,12 +1,10 @@
 import re
+import numpy as np
 
 from flask import Flask, request, render_template
-from numpy import sort
 import os
-
 from SQLQuery import sqlQuery as sqlQuery
 from GraphicsCreaterUtilCPU import GraphicUtilCPU
-import pandas as pd
 #----------------ПЕРЕМЕННЫЕ---------------------------------------------------------------------------------------------
 test_date = '171214'
 directory = '//192.168.50.30/inotes/personal/s.danilov/data/171214/sar'
@@ -58,6 +56,7 @@ def graphics():
     Checkall = []
     Enrollall = []
     Enrolledall = []
+
     i = 0
     for row in VarCh1['New']:
         i = i + int(row)
@@ -74,7 +73,8 @@ def graphics():
     for row in VarCh1['Enrolled']:
         i = i + int(row)
         Enrolledall.append(i)
-# ----------------------------------------------------------------------------------------------------------------------
+
+# --1 График------------------------------------------------------------------------------------------------------------
     legend1 = 'New'
     temperatures1 = VarCh1['New']
     legend2 = 'Check'
@@ -83,6 +83,7 @@ def graphics():
     temperatures3 = VarCh1['Enroll']
     legend4 = 'Enrolled'
     temperatures4 = VarCh1['Enrolled']
+# --2 График------------------------------------------------------------------------------------------------------------
     legend5 = 'New'
     temperatures5 = Newall
     legend6 = 'Check'
@@ -92,6 +93,11 @@ def graphics():
     legend8 = 'Enrolled'
     temperatures8 = Enrolledall
     times = VarCh1['Time']
+# --3 График---10 минут-------------------------------------------------------------------------------------------------
+    LabelsEnrolled = 'Обработано, реестров зачисл. в час'
+    Enrolled10 = smit.getEnrolled10(filess)
+    print(Enrolled10)
+
     return render_template('TestGrapics.html', labels1=times,
                            NewLegend=legend1, NewValues=temperatures1,
                            CheckLegend=legend2, CheckValues=temperatures2,
@@ -100,7 +106,8 @@ def graphics():
                            Legend1=legend5, Values1=temperatures5,
                            Legend2=legend6, Values2=temperatures6,
                            Legend3=legend7, Values3=temperatures7,
-                           Legend4=legend8, Values4=temperatures8, )
+                           Legend4=legend8, Values4=temperatures8,
+                           LabelsEnrolled=LabelsEnrolled,Enrolled10 = Enrolled10)
 
 if __name__ == '__main__':
     app.run()

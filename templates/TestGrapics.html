@@ -58,6 +58,7 @@
   </form>
 <canvas id="line-chart" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <canvas id="line-chartAll" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
+<canvas id="line-chart10" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <script>
     Chart.defaults.global.elements.line.fill = false;
     Chart.defaults.global.responsive = false;
@@ -133,6 +134,7 @@
 <script>
     Chart.defaults.global.elements.line.fill = false;
     Chart.defaults.global.responsive = false;
+    Chart.defaults.global.lineCap = 'round';
     new Chart(document.getElementById("line-chartAll"), {
   type: 'line',
   data: {
@@ -194,7 +196,49 @@
     title: {
       display: true,
       text: 'Digradation'
-    }
+    },
+      line: {
+                tension: 0// disables bezier curves
+            }
+  }
+});
+    </script>
+<script>
+    Chart.defaults.global.elements.line.fill = false;
+    Chart.defaults.global.responsive = false;
+    Chart.defaults.global.lineCap = 'round';
+    new Chart(document.getElementById("line-chart10"), {
+  type: 'line',
+  data: {
+    labels: [{% for item in labels1 %}
+                       "{{item}}",
+                      {% endfor %}],
+    datasets: [{
+        data: [{% for item in Enrolled10 %}
+                          {{item}},
+                        {% endfor %}],
+        label: '{{ EnrolledLegend }}',
+        borderColor: "#8e5ea2",
+        backgroundColor: "#8e5ea2",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      }
+    ]
+  },
+  options: {
+      legend: {
+          display: true,
+          position: 'bottom'
+      },
+    title: {
+      display: true,
+      text: 'Digradation'
+    },
+      line: {
+                tension: 0// disables bezier curves
+            }
   }
 });
     </script>
