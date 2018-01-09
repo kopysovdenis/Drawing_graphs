@@ -21,15 +21,6 @@ namesFolders = ['BCO_UNION_NO_Accept',
                 ]
 filescount = [2.0, 1.0, 1.0]
 
-# start_intense = 1140 #реестров в час, стартовая интенсивность
-# final_intense = 1140 #реестров в час, финишная интенсивность
-# step_length = 600 #минут, длительность "полки"
-# interval = 5         #минут, частота отправки файлов
-# duration = 600       #минут, длительность теста
-# init_delay = 0
-# step_length1 = 5   #(interval = 5 :раз в 5 минут)
-# files_count = 2
-
 smit = sqlQuery()
 graf = GraphicUtilCPU()
 param_stab = param_stabs()
@@ -124,24 +115,38 @@ def graphics():
        Enrolled10 = smit.getEnrolled10(filess)
        LabelsWeb = 'Успешные web-операции'
        FainWebs = smit.dataProcessing(request.form['ValuesTest'])
-       start_intense = int(request.form['start_intense'])
-       final_intense = int(request.form['final_intense'])
-       interval = int(request.form['interval'])
-       duration = int(request.form['duration'])
-       step_length = int(request.form['step_length'])
-       step_length1 = int(request.form['step_length1'])
+       start_intense = float(request.form['start_intense'])
+       final_intense = float(request.form['final_intense'])
+       interval = float(request.form['interval'])
+       duration = float(request.form['duration'])
+       step_length = float(request.form['step_length'])
+       step_length1 = float(request.form['step_length1'])
        files_count = 2
-
+# ----------------------------------------------------------------------------------------------------------------------
        if sum(percent) == 100 and start_intense >= 0 and final_intense >= 0 and interval >= 0 and duration >= 0 and step_length >= 0:
            for n, nf, p, fc in zip(names, namesFolders, percent, filescount):
                out = param_stab.make_intervals(start_intense * p / 100, final_intense * p / 100, interval, duration,
                                                step_length, step_length1, files_count)
                out = [out[0]] + [[i[0], i[1] / fc] for i in out[1:]]
                resu.append(out)
-           print(resu[0][1:])
-           print(resu[1][1:])
-           print(resu[2][1:])
+       union = [a[1] for a in resu[0][1:]]        # union
+       accept = [a[1]/2 for a in resu[1][1:]]     # accept
+       no_accept = [a[1]/2 for a in resu[2][1:]]  # no_accept
 
+       delivered_load_per_minute = [sum(am) for am in zip(union,accept,no_accept)]
+       count = 4
+       final_delivered_load = []
+       for x in delivered_load_per_minute:
+           final_delivered_load.append(x)
+           final_delivered_load.extend([0.0]*count)
+
+# ----------------------------------------------------------------------------------------------------------------------
+       delivered_load_per_10minute = smit.get_delivered_load_per_10minute(final_delivered_load)
+       label_delivered_10minuts = 'Подача нагрузки реестров зачисления в час'
+# --График 4-Производительность-----------------------------------------------------------------------------------------
+
+       sumDelivered = smit.getSummAllElements(final_delivered_load)
+       legendSumDelivered = 'Подача нагрузки с накоплением'
        return render_template('TestGrapics.html', labels1=times,
                               NewLegend=legend1, NewValues=temperatures1,
                               CheckLegend=legend2, CheckValues=temperatures2,
@@ -153,7 +158,9 @@ def graphics():
                               Legend3=legend7, Values3=temperatures7,
                               Legend4=legend8, Values4=temperatures8,
                               LabelsEnrolled=LabelsEnrolled, Enrolled10=Enrolled10,
-                              LabelsWeb=LabelsWeb, FainWebs=FainWebs)
+                              LabelsWeb=LabelsWeb, FainWebs=FainWebs,
+                              label_delivered_10minuts = label_delivered_10minuts,delivered_load_per_10minute = delivered_load_per_10minute,
+                              legendSumDelivered = legendSumDelivered, sumDelivered = sumDelivered)
    except Exception as e:
        return render_template('Graphics.html', Error = 'Попробуй еще РАЗ!'+'\n'+str(e))
 

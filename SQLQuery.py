@@ -263,6 +263,26 @@ class sqlQuery():
             envereds11.append(int(x)*6)
         return envereds11
 
+    def get_delivered_load_per_10minute(self,delivered_load_per_minute):
+        count = 0
+        envereds10 = []
+        delse = []
+        VarCh2 = np.array(delivered_load_per_minute)
+
+        for x in VarCh2:
+            envereds10.append(VarCh2[count:count + 10].sum())
+            count += 1
+
+        for x in envereds10:
+            delse.append(int(x) * 6)
+        return delse
+    def getSummAllElements(self, liseted):
+        listy = []
+        c = 0.0
+        for x in liseted:
+            c = c + x
+            listy.append(c)
+        return listy
     def dataProcessing(self, DataValues):
         try:
             b = re.compile(r"[0-9]+:[0-9]+\s.*?\s(.*?)\s")

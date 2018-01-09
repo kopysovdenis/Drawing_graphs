@@ -59,6 +59,7 @@
 <canvas id="line-chart" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <canvas id="line-chartAll" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <canvas id="line-chart10" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
+<canvas id="line-chartLoad" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <script>
 
 var speedCanvas = document.getElementById("line-chart");
@@ -280,9 +281,10 @@ var lineChart = new Chart(speedCanvasAll, {
     data: [{% for item in Enrolled10 %}
                           {{item}},
                         {% endfor %}],
-    lineTension: 0.3,
+
     borderColor: "#8e5ea2",
     backgroundColor: "#8e5ea2",
+    lineTension: 0.5,
     pointHoverBorderWidth: 0.4,
     pointRadius: 1,
     pointHitRadius: 10,
@@ -304,11 +306,25 @@ var dataSecond = {
     yAxisID: 'left-y-axis'
   };
 
+var delivered_10minuts = {
+    data: [{% for item in delivered_load_per_10minute %}
+                          {{item}},
+                        {% endfor %}],
+    label: '{{ label_delivered_10minuts }}',
+    borderColor: "#21e4f3",
+    backgroundColor: "#21e4f3",
+    pointHoverBorderWidth: 0.4,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false,
+    yAxisID: 'right-y-axis'
+  };
+
 var speedData = {
   labels: [{% for item in labels1 %}
                        "{{item}}",
                       {% endfor %}],
-  datasets: [dataFirst, dataSecond]
+  datasets: [dataFirst, dataSecond, delivered_10minuts]
 };
 
 var chartOptions = {
@@ -344,6 +360,143 @@ var lineChart = new Chart(speedCanvas, {
   data: speedData,
   options: chartOptions
 });
+</script>
+<script>
+    var speedCanvas = document.getElementById("line-chartLoad");
+    Chart.defaults.global.elements.line.fill = false;
+    Chart.defaults.global.responsive = false;
+    Chart.defaults.global.lineCap = 'round';
+
+    var New = {
+        data: [{% for item in Values1 %}
+                              {{item1}},
+                            {% endfor %}],
+        label: '{{ Legend1 }}',
+        borderColor: "#3e95cd",
+        backgroundColor: "#3e95cd",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+        };
+
+    var Check = {
+        data: [{% for item in Values2 %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ Legend2 }}',
+        borderColor: "#8e5ea2",
+        backgroundColor: "#8e5ea2",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      };
+    var Enroll = {
+        data: [{% for item in Values3 %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ Legend3 }}',
+        borderColor: "#3cba9f",
+        backgroundColor: "#3cba9f",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      };
+    var Enrolled = {
+        data: [{% for item in Values4 %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ Legend4 }}',
+        borderColor: "#e8c3b9",
+        backgroundColor: "#e8c3b9",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      };
+
+    var sumDelivered = {
+        data: [{% for item in sumDelivered %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ legendSumDelivered }}',
+        borderColor: "#000000",
+        backgroundColor: "#000000",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      };
+
+    var delivered_10minuts = {
+    data: [{% for item in delivered_load_per_10minute %}
+                          {{item}},
+                        {% endfor %}],
+        label: '{{ label_delivered_10minuts }}',
+        borderColor: "#6f6e6e",
+        backgroundColor: "#6f6e6e",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+    };
+
+
+    var dataFirst = {
+        label: '{{ LabelsEnrolled }}',
+        data: [{% for item in Enrolled10 %}
+                              {{item}},
+                            {% endfor %}],
+
+        borderColor: "#a27821",
+        backgroundColor: "#a27821",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 0.4,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false
+      };
+
+
+    var speedData1 = {
+      labels: [{% for item in labels1 %}
+                           "{{item}}",
+                          {% endfor %}],
+      datasets: [New, Check, Enroll, Enrolled, sumDelivered, delivered_10minuts, dataFirst]
+    };
+
+    var chartOptions1 = {
+        legend: {
+              display: true,
+              position: 'bottom'
+          },
+        title: {
+          display: true,
+          text: 'Производительность'
+        },
+          scales:{
+              yAxes:[{
+                  position: 'left',
+                  scaleLabel:{
+                      display: true,
+                      labelString: 'Обработанно реестров за весь тест'
+                  }
+              }]
+          }
+    };
+    var lineChart = new Chart(speedCanvas, {
+        type: 'line',
+        data: speedData1,
+        options: chartOptions1
+    });
 </script>
 </body>
 </html>
