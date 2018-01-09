@@ -8,10 +8,28 @@
     </script>
   </head>
   <body>
-  <form action=http://127.0.0.1:5000/graphics1 method="post">
-    <input type="submit" value="Построить График">
+  <form action=http://192.168.70.127:5000/graphics1 method="post">
+      <p>{{ Error }}</p>
+      <p> Вставьте данные теста</p>
+      <p><textarea name="ValuesTest" rows="20" cols="40"></textarea></p>
+      <p>Расчет нагрузки</p>
+      <p>реестров в час, стартовая интенсивность:</p>
+      <p><input name="start_intense" maxlength="15" size="40" value=""></p>
+      <p>реестров в час, финишная интенсивность:</p>
+      <p><input name="final_intense" maxlength="15" size="40" value=""></p>
+      <p>минут, длительность "полки":</p>
+      <p><input name="step_length" maxlength="15" size="40" value=""></p>
+      <p>минут, частота отправки файлов:</p>
+      <p><input name="interval" maxlength="15" size="40" value=""></p>
+      <p>минут, длительность теста:</p>
+      <p><input name="duration" maxlength="15" size="40" value=""></p>
+      <p>interval = 5 :раз в 5 минут:</p>
+      <p><input name="step_length1" maxlength="15" size="40" value=""></p>
+      <p><input type="submit" value="Построить График"></p>
   </form>
-  <form action=http://127.0.0.1:5000 method="get">
+
+
+  <form action=http://192.168.70.127:5000 method="get">
     <input type="submit" value="Главная">
   </form>
   </body>

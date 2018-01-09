@@ -50,27 +50,24 @@
         </div>
     </div>
 </div>
-<form action=http://127.0.0.1:5000/graphics method="get">
+<form action=http://192.168.70.127:5000/graphics method="get">
     <input type="submit" value="Вернуться">
   </form>
-  <form action=http://127.0.0.1:5000 method="get">
+  <form action=http://192.168.70.127:5000 method="get">
     <input type="submit" value="Главная">
   </form>
 <canvas id="line-chart" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <canvas id="line-chartAll" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <canvas id="line-chart10" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <script>
+
+var speedCanvas = document.getElementById("line-chart");
     Chart.defaults.global.elements.line.fill = false;
     Chart.defaults.global.responsive = false;
     Chart.defaults.global.lineCap = 'round';
-    new Chart(document.getElementById("line-chart"), {
-  type: 'line',
-  data: {
-    labels: [{% for item in labels1 %}
-                       "{{item}}",
-                      {% endfor %}],
-    datasets: [{
-        data: [{% for item in NewValues %}
+
+var New = {
+    data: [{% for item in NewValues %}
                           {{item}},
                         {% endfor %}],
         label: '{{ NewLegend }}',
@@ -80,167 +77,235 @@
         pointRadius: 1,
         pointHitRadius: 10,
         fill: false
-      }, {
-        data: [{% for item in CheckValues %}
+    };
+
+var Check = {
+    data: [{% for item in CheckValues %}
                           {{item}},
                         {% endfor %}],
-        label: '{{ CheckLegend }}',
-        borderColor: "#8e5ea2",
-        backgroundColor: "#8e5ea2",
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        fill: false,
-        showLines: true
-      }, {
-        data: [{% for item in EnrollValues %}
+    label: '{{ CheckLegend }}',
+    borderColor: "#8e5ea2",
+    backgroundColor: "#8e5ea2",
+    pointHoverBorderWidth: 2,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false,
+    showLines: true
+};
+var Enroll = {
+    data: [{% for item in EnrollValues %}
                           {{item}},
                         {% endfor %}],
-        label: '{{ EnrollLegend }}',
-        borderColor: "#3cba9f",
-        backgroundColor: "#3cba9f",
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        fill: false,
-        showLines: true
-      }, {
-        data: [{% for item in EnrolledValues %}
+    label: '{{ EnrollLegend }}',
+    borderColor: "#3cba9f",
+    backgroundColor: "#3cba9f",
+    pointHoverBorderWidth: 2,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false,
+    showLines: true
+};
+var Enrolled = {
+    data: [{% for item in EnrolledValues %}
                           {{item}},
                         {% endfor %}],
-        label: '{{ EnrolledLegend }}',
-        borderColor: "#e8c3b9",
-        backgroundColor: "#e8c3b9",
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        fill: false,
-        showLines: true
-      }
-    ]
-  },
-  options: {
-      legend: {
+    label: '{{ EnrolledLegend }}',
+    borderColor: "#e8c3b9",
+    backgroundColor: "#e8c3b9",
+    pointHoverBorderWidth: 2,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false,
+    showLines: true
+};
+
+var speedData = {
+  labels: [{% for item in labels1 %}
+                       "{{item}}",
+                      {% endfor %}],
+  datasets: [New, Check, Enroll, Enrolled]
+};
+
+var chartOptions = {
+    legend: {
           display: true,
           position: 'bottom'
       },
     title: {
       display: true,
-      text: 'Digradation'
+      text: 'Исходные данные диаграмм'
     }
-  }
+};
+
+var lineChart = new Chart(speedCanvas, {
+  type: 'line',
+  data: speedData,
+  options: chartOptions
 });
     </script>
 <script>
+var speedCanvasAll = document.getElementById("line-chartAll");
     Chart.defaults.global.elements.line.fill = false;
     Chart.defaults.global.responsive = false;
     Chart.defaults.global.lineCap = 'round';
-    new Chart(document.getElementById("line-chartAll"), {
-  type: 'line',
-  data: {
-    labels: [{% for item in labels1 %}
-                       "{{item}}",
-                      {% endfor %}],
-    datasets: [{
-        data: [{% for item in Values1 %}
+
+var New = {
+    data: [{% for item in Values1 %}
                           {{item1}},
                         {% endfor %}],
-        label: '{{ Legend1 }}',
-        borderColor: "#3e95cd",
-        backgroundColor: "#3e95cd",
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        fill: false
-      }, {
-        data: [{% for item in Values2 %}
+    label: '{{ Legend1 }}',
+    borderColor: "#3e95cd",
+    backgroundColor: "#3e95cd",
+    pointHoverBorderWidth: 2,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false
+  };
+var Check = {
+    data: [{% for item in Values2 %}
                           {{item}},
                         {% endfor %}],
-        label: '{{ Legend2 }}',
-        borderColor: "#8e5ea2",
-        backgroundColor: "#8e5ea2",
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        fill: false
-      }, {
-        data: [{% for item in Values3 %}
+    label: '{{ Legend2 }}',
+    borderColor: "#8e5ea2",
+    backgroundColor: "#8e5ea2",
+    pointHoverBorderWidth: 2,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false
+  };
+var Enroll = {
+    data: [{% for item in Values3 %}
                           {{item}},
                         {% endfor %}],
-        label: '{{ Legend3 }}',
-        borderColor: "#3cba9f",
-        backgroundColor: "#3cba9f",
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        fill: false
-      }, {
-        data: [{% for item in Values4 %}
+    label: '{{ Legend3 }}',
+    borderColor: "#3cba9f",
+    backgroundColor: "#3cba9f",
+    pointHoverBorderWidth: 2,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false
+  };
+var Enrolled = {
+    data: [{% for item in Values4 %}
                           {{item}},
                         {% endfor %}],
-        label: '{{ Legend4 }}',
-        borderColor: "#e8c3b9",
-        backgroundColor: "#e8c3b9",
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        fill: false
-      }
-    ]
-  },
-  options: {
-      legend: {
+    label: '{{ Legend4 }}',
+    borderColor: "#e8c3b9",
+    backgroundColor: "#e8c3b9",
+    pointHoverBorderWidth: 2,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false
+  };
+
+var speedData1 = {
+  labels: [{% for item in labels1 %}
+                       "{{item}}",
+                      {% endfor %}],
+  datasets: [New, Check, Enroll, Enrolled]
+};
+
+var chartOptions1 = {
+    legend: {
           display: true,
           position: 'bottom'
       },
     title: {
       display: true,
-      text: 'Digradation'
+      text: 'Производительность (накопленная)'
     },
-      line: {
-                tension: 0// disables bezier curves
-            }
-  }
+      scales:{
+          yAxes:[{
+              position: 'left',
+              scaleLabel:{
+                  display: true,
+                  labelString: 'Обработанно реестров за весь тест'
+              }
+          }]
+      }
+};
+
+var lineChart = new Chart(speedCanvasAll, {
+  type: 'line',
+  data: speedData1,
+  options: chartOptions1
 });
     </script>
 <script>
+    var speedCanvas = document.getElementById("line-chart10");
     Chart.defaults.global.elements.line.fill = false;
     Chart.defaults.global.responsive = false;
     Chart.defaults.global.lineCap = 'round';
-    new Chart(document.getElementById("line-chart10"), {
-  type: 'line',
-  data: {
-    labels: [{% for item in labels1 %}
-                       "{{item}}",
-                      {% endfor %}],
-    datasets: [{
-        data: [{% for item in Enrolled10 %}
+
+    var dataFirst = {
+    label: '{{ LabelsEnrolled }}',
+    data: [{% for item in Enrolled10 %}
                           {{item}},
                         {% endfor %}],
-        label: '{{ EnrolledLegend }}',
-        borderColor: "#8e5ea2",
-        backgroundColor: "#8e5ea2",
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        fill: false
-      }
-    ]
-  },
-  options: {
-      legend: {
+    lineTension: 0.3,
+    borderColor: "#8e5ea2",
+    backgroundColor: "#8e5ea2",
+    pointHoverBorderWidth: 0.4,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false,
+    yAxisID: 'right-y-axis'
+  };
+
+var dataSecond = {
+    data: [{% for item in FainWebs %}
+                          {{item}},
+                        {% endfor %}],
+    label: '{{ LabelsWeb }}',
+    borderColor: "#ffaa00",
+    backgroundColor: "#ffaa00",
+    pointHoverBorderWidth: 0.4,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false,
+    yAxisID: 'left-y-axis'
+  };
+
+var speedData = {
+  labels: [{% for item in labels1 %}
+                       "{{item}}",
+                      {% endfor %}],
+  datasets: [dataFirst, dataSecond]
+};
+
+var chartOptions = {
+  legend: {
           display: true,
           position: 'bottom'
       },
     title: {
       display: true,
-      text: 'Digradation'
+      text: 'Производительность и подаваемая нагрузка'
     },
-      line: {
-                tension: 0// disables bezier curves
-            }
-  }
+      scales:{
+          yAxes:[{
+              id: 'right-y-axis',
+              position: 'right',
+              scaleLabel:{
+                      display: true,
+                      labelString: 'РЕЕСТРОВ В ЧАС'
+                        }
+          },{
+              id: 'left-y-axis',
+              position: 'left',
+              scaleLabel:{
+                  display: true,
+                  labelString: 'ВЕБ ОПЕРАЦИЙ В ЧАС'
+              }
+          }]
+      }
+};
+
+var lineChart = new Chart(speedCanvas, {
+  type: 'line',
+  data: speedData,
+  options: chartOptions
 });
-    </script>
+</script>
 </body>
 </html>

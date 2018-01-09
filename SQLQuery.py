@@ -1,6 +1,7 @@
 import cx_Oracle
 import pandas as pd
 import numpy as np
+import re
 
 host = '192.168.50.24'
 port = 1521
@@ -261,3 +262,23 @@ class sqlQuery():
         for x in envereds10:
             envereds11.append(int(x)*6)
         return envereds11
+
+    def dataProcessing(self, DataValues):
+        try:
+            b = re.compile(r"[0-9]+:[0-9]+\s.*?\s(.*?)\s")
+            Passe = re.findall(b, DataValues)
+            far = np.array(Passe)
+            fat = []
+            fat1 = []
+            for x in far:
+                if len(x) <= 1:
+                    x = x+'.0'
+                    fat.append(x)
+                x = str(x).replace(',','.')
+                fat.append(x)
+            fats = np.array(fat, dtype=float)
+            for x in fats:
+                fat1.append(x*3600)
+            return fat1
+        except Exception as e:
+            return  e
