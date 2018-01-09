@@ -76,7 +76,8 @@ var New = {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        fill: false
+        fill: false,
+        yAxisID: 'left-y-axis'
     };
 
 var Check = {
@@ -90,8 +91,10 @@ var Check = {
     pointRadius: 1,
     pointHitRadius: 10,
     fill: false,
-    showLines: true
+    showLines: true,
+    yAxisID: 'left-y-axis'
 };
+
 var Enroll = {
     data: [{% for item in EnrollValues %}
                           {{item}},
@@ -103,7 +106,8 @@ var Enroll = {
     pointRadius: 1,
     pointHitRadius: 10,
     fill: false,
-    showLines: true
+    showLines: true,
+    yAxisID: 'left-y-axis'
 };
 var Enrolled = {
     data: [{% for item in EnrolledValues %}
@@ -116,14 +120,31 @@ var Enrolled = {
     pointRadius: 1,
     pointHitRadius: 10,
     fill: false,
-    showLines: true
+    showLines: true,
+    yAxisID: 'left-y-axis'
+};
+
+var EnrolledsTenMinets = {
+  data: [{% for item in Enrolled10 %}
+                          {{item}},
+                        {% endfor %}],
+    label: '{{ legend51 }}',
+    borderColor: "#33d600",
+    backgroundColor: "#33d600",
+    pointHoverBorderWidth: 2,
+    pointRadius: 1,
+    pointHitRadius: 10,
+    fill: false,
+    showLines: true,
+    yAxisID: 'right-y-axis'
+
 };
 
 var speedData = {
   labels: [{% for item in labels1 %}
                        "{{item}}",
                       {% endfor %}],
-  datasets: [New, Check, Enroll, Enrolled]
+  datasets: [New, Check, Enroll, Enrolled,EnrolledsTenMinets]
 };
 
 var chartOptions = {
@@ -131,9 +152,26 @@ var chartOptions = {
           display: true,
           position: 'bottom'
       },
+    scales:{
+          yAxes:[{
+              id: 'right-y-axis',
+              position: 'right',
+              scaleLabel:{
+                      display: true,
+                      labelString: 'Время обработки реестров'
+                        }
+          },{
+              id: 'left-y-axis',
+              position: 'left',
+              scaleLabel:{
+                  display: true,
+                  labelString: 'Реестров в минуту'
+              }
+          }]
+      },
     title: {
       display: true,
-      text: 'Исходные данные диаграмм'
+      text: 'Уолличество реестров в разных статусах в минуту'
     }
 };
 
