@@ -7,7 +7,11 @@ test_date = '171214'
 directory = '//192.168.50.30/inotes/personal/s.danilov/data/171214/sar'
 LOGS_sar = '//192.168.50.30/inotes/personal/s.danilov/data/{0}/sar/'.format(test_date)
 LOGS_nmon = '//192.168.50.30/inotes/personal/s.danilov/data/{0}/nmon/'.format(test_date)
+pickle_sar = '//192.168.50.30/inotes/personal/s.danilov/pkl/{0}/sar/sar_{0}.pkl.zip'
 filess = 'C:/Users/d.kopysov/Desktop/logQuerty.csv'
+fillessCard = 'C:/Users/d.kopysov/Desktop/time_cards.csv'
+fillessCard1 = 'C:/Users/d.kopysov/Desktop/time_cards1.csv'
+filessPerfomance = 'C:/Users/d.kopysov/Desktop/Perfomance.csv'
 resu = []
 
 percent = [8.2, 10.02, 81.78]  # Вводится 1 раз за 1 релиз
@@ -21,9 +25,10 @@ namesFolders = ['BCO_UNION_NO_Accept',
                 ]
 filescount = [2.0, 1.0, 1.0]
 
-smit = sqlQuery()
-graf = GraphicUtilCPU()
+sql_q = sqlQuery()
+GUCPU = GraphicUtilCPU()
 param_stab = param_stabs()
+
 
 
 
@@ -38,22 +43,22 @@ def echo():
    try:
        if(request.form['text'] == ''):
            return render_template('index.html', values = '')
-       exeptonsed = smit.functions(request.form['text'])
+       exeptonsed = sql_q.functions(request.form['text'])
        return render_template('index.html',values=exeptonsed)
    except Exception as e:
        return render_template('index.html', values = '', Errors = e)
 
 @app.route("/clearBD", methods=['GET'])
 def clearBDA():
-   statistic = smit.StatisticTable()
+   statistic = sql_q.StatisticTable()
    return render_template('clearBD.html',static = statistic, day = '', result = '')
 
 @app.route("/clearBD", methods=['POST'])
 def clearBDAs():
-   statistic = smit.StatisticTable()
+   statistic = sql_q.StatisticTable()
    if (request.form['day'] == ''):
        return render_template('clearBD.html',static = statistic, day = '', result = '')
-   days = smit.ClearOrDB(request.form['day'])
+   days = sql_q.ClearOrDB(request.form['day'])
    return render_template('clearBD.html',static = statistic, result = days, day = request.form['day'])
 
 @app.route("/graphics", methods=['GET'])
@@ -63,7 +68,7 @@ def graphic():
 def graphics():
 #----------------------------------------------------------------------------------------------------------------------
    try:
-       VarCh1 = smit.getUTL(filess)
+       VarCh1 = sql_q.getUTL(filess)
        Newall = []
        Checkall = []
        Enrollall = []
@@ -86,7 +91,7 @@ def graphics():
            i = i + int(row)
            Enrolledall.append(i)
 
-# --1 График------------------------------------------------------------------------------------------------------------
+# --1 График--Количество реестров в разных статусах в минуту------------------------------------------------------------
        legend1 = 'New'
        temperatures1 = VarCh1['New']
        legend2 = 'Check'
@@ -96,9 +101,10 @@ def graphics():
        legend4 = 'Enrolled'
        temperatures4 = VarCh1['Enrolled']
        legend51 = 'Enrolled(Усред.до 10 минут)'
-# Не хватает среднего времени обработки реестров
+       avg_sd1 = sql_q.getCard(fillessCard1)['AVG_SD']
+       # Не хватает среднего времени обработки реестров
 
-# --2 График------------------------------------------------------------------------------------------------------------
+# --2 График--Производительность (накопленная)--------------------------------------------------------------------------
        legend5 = 'New'
        temperatures5 = Newall
        legend6 = 'Check'
@@ -108,13 +114,13 @@ def graphics():
        legend8 = 'Enrolled'
        temperatures8 = Enrolledall
        times = VarCh1['Time']
-# --3 График---10 минут-------------------------------------------------------------------------------------------------
+# --3 График---10 минут--Производительность и подаваемая нагрузка-------------------------------------------------------
 
 
        LabelsEnrolled = 'Обработано, реестров зачисл. в час'
-       Enrolled10 = smit.getEnrolled10(filess)
+       Enrolled10 = sql_q.getEnrolled10(filess)
        LabelsWeb = 'Успешные web-операции'
-       FainWebs = smit.dataProcessing(request.form['ValuesTest'])
+       FainWebs = sql_q.dataProcessing(request.form['ValuesTest'])
        start_intense = float(request.form['start_intense'])
        final_intense = float(request.form['final_intense'])
        interval = float(request.form['interval'])
@@ -141,17 +147,26 @@ def graphics():
            final_delivered_load.extend([0.0]*count)
 
 # ----------------------------------------------------------------------------------------------------------------------
-       delivered_load_per_10minute = smit.get_delivered_load_per_10minute(final_delivered_load)
+       delivered_load_per_10minute = sql_q.get_delivered_load_per_10minute(final_delivered_load)
        label_delivered_10minuts = 'Подача нагрузки реестров зачисления в час'
-# --График 4-Производительность-----------------------------------------------------------------------------------------
+# --График 4--Производительность----------------------------------------------------------------------------------------
+       DATAOK = sql_q.getSummAllElements(sql_q.getPerformance(filessPerfomance)['DATAOK'])
+       LabelsDATAOK = 'DATAOK'
+       Processed = sql_q.getSummAllElements(sql_q.getPerformance(filessPerfomance)['Processed'])
+       LabelsProcessed ='Processed'
+# --График 6--Время обработки реестров----------------------------------------------------------------------------------
 
-       sumDelivered = smit.getSummAllElements(final_delivered_load)
+       avg_sd = sql_q.getCard(fillessCard)['AVG_SD']
+       print(avg_sd)
+       legendAVG_SD = 'Среднее время обработки реестров'
+
+       sumDelivered = sql_q.getSummAllElements(final_delivered_load)
        legendSumDelivered = 'Подача нагрузки с накоплением'
        return render_template('TestGrapics.html', labels1=times,
                               NewLegend=legend1, NewValues=temperatures1,
                               CheckLegend=legend2, CheckValues=temperatures2,
                               EnrollLegend=legend3, EnrollValues=temperatures3,
-                              EnrolledLegend=legend4, EnrolledValues=temperatures4,
+                              EnrolledLegend=legend4, EnrolledValues=temperatures4,avg_sd1 = avg_sd1,
                               legend51 = legend51,
                               Legend1=legend5, Values1=temperatures5,
                               Legend2=legend6, Values2=temperatures6,
@@ -160,7 +175,11 @@ def graphics():
                               LabelsEnrolled=LabelsEnrolled, Enrolled10=Enrolled10,
                               LabelsWeb=LabelsWeb, FainWebs=FainWebs,
                               label_delivered_10minuts = label_delivered_10minuts,delivered_load_per_10minute = delivered_load_per_10minute,
-                              legendSumDelivered = legendSumDelivered, sumDelivered = sumDelivered)
+                              legendSumDelivered = legendSumDelivered, sumDelivered = sumDelivered,
+                              legendAVG_SD = legendAVG_SD, avg_sd = avg_sd,
+                              LabelsDATAOK = LabelsDATAOK, DATAOK = DATAOK,
+                              LabelsProcessed = LabelsProcessed, Processed = Processed
+                              )
    except Exception as e:
        return render_template('Graphics.html', Error = 'Попробуй еще РАЗ!'+'\n'+str(e))
 

@@ -29,7 +29,7 @@ class sqlQuery():
 
     def ClearOrDB(self, days):
         try:
-            if days > 0:
+            if int(days) > 0:
                 try:
                     tns = cx_Oracle.makedsn(host, port, SID)
                     connect = cx_Oracle.connect(UserName, pswd, tns)
@@ -53,7 +53,8 @@ class sqlQuery():
                                     EXECUTE IMMEDIATE 'ALTER TABLE '|| x.table_name ||' DROP PARTITION ' || x.partition_name;
                                 END IF;
                         END LOOP;
-                    END;""")
+                    END;
+                    """)
                     outText = list(cur)
                     cur.close()
                     connect.close()
@@ -276,13 +277,19 @@ class sqlQuery():
         for x in envereds10:
             delse.append(int(x) * 6)
         return delse
+
     def getSummAllElements(self, liseted):
         listy = []
+        listy1 = []
         c = 0.0
-        for x in liseted:
-            c = c + x
+        for m in liseted:
+            m = str(m).replace(',', '.')
+            listy1.append(m)
+        for x in listy1:
+            c = c + float(x)
             listy.append(c)
         return listy
+
     def dataProcessing(self, DataValues):
         try:
             b = re.compile(r"[0-9]+:[0-9]+\s.*?\s(.*?)\s")
@@ -302,3 +309,14 @@ class sqlQuery():
             return fat1
         except Exception as e:
             return  e
+
+
+    def getCard(self, filles):
+        Val1 = pd.read_csv(filles, sep=';', header=None,
+                           names=['AVG_SD', 'MAX_SD', 'MIN_SD', 'MEDIAN_SD', 'PERCENTILE_SD'], index_col=0, na_filter = False)
+        return Val1
+
+    def getPerformance(self, filles):
+        Val1 = pd.read_csv(filles, sep=';', header=None,
+                           names=['DATAOK','Processed'], index_col=0, na_filter = False)
+        return Val1

@@ -60,6 +60,9 @@
 <canvas id="line-chartAll" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <canvas id="line-chart10" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <canvas id="line-chartLoad" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
+<canvas id="line-chart4" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
+<canvas id="line-chart5" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
+<canvas id="line-chart6" style="display: block; width: 1024px; height: 512px;" width="1024" height="512"></canvas>
 <script>
 
 var speedCanvas = document.getElementById("line-chart");
@@ -67,6 +70,22 @@ var speedCanvas = document.getElementById("line-chart");
     Chart.defaults.global.responsive = false;
     Chart.defaults.global.lineCap = 'round';
 
+
+var avg_sd = {
+        data: [{% for item in avg_sd1 %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ legendAVG_SD }}',
+        borderColor: "#f71305",
+        backgroundColor: "#f71305",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false,
+        yAxisID: 'right-y-axis',
+        spanGaps: true
+        };
 var New = {
     data: [{% for item in NewValues %}
                           {{item}},
@@ -78,7 +97,8 @@ var New = {
         pointRadius: 1,
         pointHitRadius: 10,
         fill: false,
-        yAxisID: 'left-y-axis'
+        yAxisID: 'left-y-axis',
+        spanGaps: true
     };
 
 var Check = {
@@ -93,7 +113,8 @@ var Check = {
     pointHitRadius: 10,
     fill: false,
     showLines: true,
-    yAxisID: 'left-y-axis'
+    yAxisID: 'left-y-axis',
+    spanGaps: true
 };
 
 var Enroll = {
@@ -108,7 +129,8 @@ var Enroll = {
     pointHitRadius: 10,
     fill: false,
     showLines: true,
-    yAxisID: 'left-y-axis'
+    yAxisID: 'left-y-axis',
+    spanGaps: true
 };
 var Enrolled = {
     data: [{% for item in EnrolledValues %}
@@ -122,7 +144,8 @@ var Enrolled = {
     pointHitRadius: 10,
     fill: false,
     showLines: true,
-    yAxisID: 'left-y-axis'
+    yAxisID: 'left-y-axis',
+    spanGaps: true
 };
 
 var EnrolledsTenMinets = {
@@ -137,7 +160,8 @@ var EnrolledsTenMinets = {
     pointHitRadius: 10,
     fill: false,
     showLines: true,
-    yAxisID: 'right-y-axis'
+    yAxisID: 'right-y-axis',
+    spanGaps: true
 
 };
 
@@ -145,7 +169,7 @@ var speedData = {
   labels: [{% for item in labels1 %}
                        "{{item}}",
                       {% endfor %}],
-  datasets: [New, Check, Enroll, Enrolled,EnrolledsTenMinets]
+  datasets: [avg_sd, New, Check, Enroll, Enrolled,EnrolledsTenMinets]
 };
 
 var chartOptions = {
@@ -172,7 +196,7 @@ var chartOptions = {
       },
     title: {
       display: true,
-      text: 'Уолличество реестров в разных статусах в минуту'
+      text: 'Количество реестров в разных статусах в минуту'
     }
 };
 
@@ -198,7 +222,8 @@ var New = {
     pointHoverBorderWidth: 2,
     pointRadius: 1,
     pointHitRadius: 10,
-    fill: false
+    fill: false,
+    spanGaps: true
   };
 var Check = {
     data: [{% for item in Values2 %}
@@ -210,7 +235,8 @@ var Check = {
     pointHoverBorderWidth: 2,
     pointRadius: 1,
     pointHitRadius: 10,
-    fill: false
+    fill: false,
+    spanGaps: true
   };
 var Enroll = {
     data: [{% for item in Values3 %}
@@ -222,7 +248,8 @@ var Enroll = {
     pointHoverBorderWidth: 2,
     pointRadius: 1,
     pointHitRadius: 10,
-    fill: false
+    fill: false,
+    spanGaps: true
   };
 var Enrolled = {
     data: [{% for item in Values4 %}
@@ -234,7 +261,8 @@ var Enrolled = {
     pointHoverBorderWidth: 2,
     pointRadius: 1,
     pointHitRadius: 10,
-    fill: false
+    fill: false,
+    spanGaps: true
   };
 
 var speedData1 = {
@@ -289,7 +317,8 @@ var lineChart = new Chart(speedCanvasAll, {
     pointRadius: 1,
     pointHitRadius: 10,
     fill: false,
-    yAxisID: 'right-y-axis'
+    yAxisID: 'right-y-axis',
+    spanGaps: true
   };
 
 var dataSecond = {
@@ -303,7 +332,8 @@ var dataSecond = {
     pointRadius: 1,
     pointHitRadius: 10,
     fill: false,
-    yAxisID: 'left-y-axis'
+    yAxisID: 'left-y-axis',
+    spanGaps: true
   };
 
 var delivered_10minuts = {
@@ -317,7 +347,8 @@ var delivered_10minuts = {
     pointRadius: 1,
     pointHitRadius: 10,
     fill: false,
-    yAxisID: 'right-y-axis'
+    yAxisID: 'right-y-axis',
+    spanGaps: true
   };
 
 var speedData = {
@@ -378,7 +409,8 @@ var lineChart = new Chart(speedCanvas, {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        fill: false
+        fill: false,
+        spanGaps: true
         };
 
     var Check = {
@@ -392,7 +424,8 @@ var lineChart = new Chart(speedCanvas, {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        fill: false
+        fill: false,
+        spanGaps: true
       };
     var Enroll = {
         data: [{% for item in Values3 %}
@@ -405,7 +438,8 @@ var lineChart = new Chart(speedCanvas, {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        fill: false
+        fill: false,
+        spanGaps: true
       };
     var Enrolled = {
         data: [{% for item in Values4 %}
@@ -418,7 +452,8 @@ var lineChart = new Chart(speedCanvas, {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        fill: false
+        fill: false,
+        spanGaps: true
       };
 
     var sumDelivered = {
@@ -432,7 +467,8 @@ var lineChart = new Chart(speedCanvas, {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        fill: false
+        fill: false,
+        spanGaps: true
       };
 
     var delivered_10minuts = {
@@ -446,7 +482,8 @@ var lineChart = new Chart(speedCanvas, {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        fill: false
+        fill: false,
+        spanGaps: true
     };
 
 
@@ -462,7 +499,8 @@ var lineChart = new Chart(speedCanvas, {
         pointHoverBorderWidth: 0.4,
         pointRadius: 1,
         pointHitRadius: 10,
-        fill: false
+        fill: false,
+        spanGaps: true
       };
 
 
@@ -487,8 +525,246 @@ var lineChart = new Chart(speedCanvas, {
                   position: 'left',
                   scaleLabel:{
                       display: true,
-                      labelString: 'Обработанно реестров за весь тест'
+                      labelString: 'Обработанно реестров в час'
                   }
+              }]
+          }
+    };
+    var lineChart = new Chart(speedCanvas, {
+        type: 'line',
+        data: speedData1,
+        options: chartOptions1
+    });
+</script>
+<script>
+    var speedCanvas = document.getElementById("line-chart6");
+    Chart.defaults.global.elements.line.fill = false;
+    Chart.defaults.global.responsive = false;
+    Chart.defaults.global.lineCap = 'round';
+
+    var avg_sd = {
+        data: [{% for item in avg_sd %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ legendAVG_SD }}',
+        borderColor: "#cd62c0",
+        backgroundColor: "#cd62c0",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false,
+        yAxisID: 'left-y-axis',
+        spanGaps: true
+        };
+
+
+    var FainWebs = {
+        data: [{% for item in FainWebs %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ LabelsWeb }}',
+        borderColor: "#ff0003",
+        backgroundColor: "#ff0003",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false,
+        yAxisID: 'right-y-axis',
+        spanGaps: true
+      };
+
+    var speedData1 = {
+      labels: [{% for item in labels1 %}
+                           "{{item}}",
+                          {% endfor %}],
+      datasets: [avg_sd,FainWebs]
+    };
+
+    var chartOptions1 = {
+        legend: {
+              display: true,
+              position: 'bottom'
+          },
+        title: {
+          display: true,
+          text: 'Время обработки реестров'
+        },
+          scales:{
+              yAxes:[{
+                  id: 'left-y-axis',
+                  position: 'left',
+                  scaleLabel:{
+                      display: true,
+                      labelString: 'Время, секунды'
+                  }
+              },{
+                  id: 'right-y-axis',
+                  position: 'right',
+                  scaleLabel:{
+                      display: true,
+                      labelString: 'Веб-операций в час'
+              }
+              }]
+          /*    ,xAxes: [{
+                type: 'time',
+                time: {
+                    displayFormats: {
+                        quarter: 'h:mm a'
+                    }
+                }
+            }]*/
+          }
+    };
+    var lineChart = new Chart(speedCanvas, {
+        type: 'line',
+        data: speedData1,
+        options: chartOptions1
+    });
+</script>
+<script>
+    var speedCanvas = document.getElementById("line-chart5");
+    Chart.defaults.global.elements.line.fill = false;
+    Chart.defaults.global.responsive = false;
+    Chart.defaults.global.lineCap = 'round';
+
+    var avg_sd = {
+        data: [{% for item in DATAOK %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ LabelsDATAOK }}',
+        borderColor: "#ff9609",
+        backgroundColor: "#ff9609",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false,
+        yAxisID: 'left-y-axis',
+        spanGaps: true
+        };
+
+
+    var FainWebs = {
+        data: [{% for item in Processed %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ LabelsProcessed }}',
+        borderColor: "#39d5ff",
+        backgroundColor: "#39d5ff",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false,
+        yAxisID: 'left-y-axis',
+        spanGaps: true
+      };
+
+    var speedData1 = {
+      labels: [{% for item in labels1 %}
+                           "{{item}}",
+                          {% endfor %}],
+      datasets: [avg_sd,FainWebs]
+    };
+
+    var chartOptions1 = {
+        legend: {
+              display: true,
+              position: 'bottom'
+          },
+        title: {
+          display: true,
+          text: 'Производительность(Накопленная)'
+        },
+          scales:{
+              yAxes:[{
+                  id: 'left-y-axis',
+                  position: 'left',
+                  scaleLabel:{
+                      display: true,
+                      labelString: 'Обработка реестров за весь тест'
+                  }
+              }]
+          }
+    };
+    var lineChart = new Chart(speedCanvas, {
+        type: 'line',
+        data: speedData1,
+        options: chartOptions1
+    });
+</script>
+<script>
+    var speedCanvas = document.getElementById("line-chart4");
+    Chart.defaults.global.elements.line.fill = false;
+    Chart.defaults.global.responsive = false;
+    Chart.defaults.global.lineCap = 'round';
+
+    var avg_sd = {
+        data: [{% for item in avg_sd1 %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ legendAVG_SD }}',
+        borderColor: "#cd62c0",
+        backgroundColor: "#cd62c0",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false,
+        yAxisID: 'left-y-axis',
+        spanGaps: true
+        };
+
+
+    var FainWebs = {
+        data: [{% for item in FainWebs %}
+                              {{item}},
+                            {% endfor %}],
+        label: '{{ LabelsWeb }}',
+        borderColor: "#ff0003",
+        backgroundColor: "#ff0003",
+        lineTension: 0.5,
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        fill: false,
+        yAxisID: 'right-y-axis',
+        spanGaps: true
+      };
+
+    var speedData1 = {
+      labels: [{% for item in labels1 %}
+                           "{{item}}",
+                          {% endfor %}],
+      datasets: [avg_sd,FainWebs]
+    };
+
+    var chartOptions1 = {
+        legend: {
+              display: true,
+              position: 'bottom'
+          },
+        title: {
+          display: true,
+          text: 'Время обработки реестров'
+        },
+          scales:{
+              yAxes:[{
+                  id: 'left-y-axis',
+                  position: 'left',
+                  scaleLabel:{
+                      display: true,
+                      labelString: 'Время, секунды'
+                  }
+              },{
+                  id: 'right-y-axis',
+                  position: 'right',
+                  scaleLabel:{
+                      display: true,
+                      labelString: 'Веб-операций в час'
+              }
               }]
           }
     };
