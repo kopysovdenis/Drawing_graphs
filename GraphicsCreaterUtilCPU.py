@@ -47,10 +47,9 @@ class GraphicUtilCPU():
                     servers.append(srv)
             return [list(filter(lambda x: x.startswith(srv), fileArr)) for srv in servers]
 
-        if not os.path.exists('//192.168.50.30/inotes/personal/s.danilov/pkl/{0}/nmon/'.format(test_date)):
-            os.makedirs('//192.168.50.30/inotes/personal/s.danilov/pkl/{0}/nmon/'.format(test_date))
-        if not os.path.exists('//192.168.50.30/inotes/personal/s.danilov/pkl/{0}/sar/'.format(test_date)):
-            os.makedirs('//192.168.50.30/inotes/personal/s.danilov/pkl/{0}/sar/'.format(test_date))
+
+        if not os.path.exists(LOGS_sar):
+            os.makedirs(LOGS_sar)
         pickle_sar.format(test_date)
         pickle_saru.format(test_date)
 #        pickle_nmon_dbu.format(test_date)
@@ -71,7 +70,7 @@ class GraphicUtilCPU():
         sarFileApp.sort()
 
         sarFileApp = to_groups(sarFileApp)
-#        sarFileAppu = to_groups(sarFileAppu)
+        sarFileAppu = to_groups(sarFileAppu)
 # NMON-------------------------------------------------------------------------------------------------------------------
 #        nmonFiles = os.listdir(LOGS_nmon)
 #
@@ -115,10 +114,8 @@ class GraphicUtilCPU():
 #                curNmon = curNmon.append(pd.read_nmon(LOGS_nmon + other, compression='gzip'))
 #            curNmon.info.server_name = s_name
 #            curNmon.to_comp_pickle(pickle_nmon_appu, member=curNmon.info.server_name + ".nmon.pkl")
-# -----------------------------------------------------------------------------------------------------------------------
-# -----------sarFileApp--------------------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------
+# -----------sarFileApp-------------------------------------------------------------------------------------------------
         for srv_sar in sarFileApp:
             fSar = pd.read_sar(LOGS_sar + srv_sar[0], date_pattern='%d.%m.%Y', time_pattern='%H:%M:%S',
                                compression='gzip')
@@ -136,7 +133,7 @@ class GraphicUtilCPU():
 #            data = pd.read_sar(LOGS_sar + valFil, date_pattern='%d.%m.%Y', time_pattern='%H:%M:%S',
 #                               compression='gzip')
 #            FileRead.append(data)
-        return FileReadAll
+        return
 #----------sarFileAppu--------------------------------------------------------------------------------------------------
 #        for srv_sar in sarFileAppu:
 #            fSar = pd.read_sar(LOGS_sar + srv_sar[0], date_pattern='%d.%m.%Y', time_pattern='%H:%M:%S',
@@ -151,29 +148,17 @@ class GraphicUtilCPU():
 #            fSar.to_comp_pickle(pickle_saru, member=fSar.info.server_name + ".sar.pkl")
 
 #-----------------------------------------------------------------------------------------------------------------------
-    def getLegendaSar(self, test_date):
+    def getLegendaSar(self, test_date, pickle_sar):
         for n, sar in enumerate(pd.read_comp_pickle(pickle_sar.format(test_date))):
             serv_name = sar.info.server_name.split('.passport.local')[0]
             lable.append(serv_name)
         return  lable
-#
+
     def getQueryColumn(self, test_date,nameColumn):
         sarIdle = []
         for n, sar in pd.read_comp_pickle(pickle_sar.format(test_date)):
             sarIdle.append(sar[nameColumn])
         FileRead = list(sarIdle)
-
         return  FileRead
 
-    def getSar(self):
-        #for sar in pd.read_sar('//192.168.50.30/inotes/personal/s.danilov/data/171214/sar/sar_k10-szp-app01_171214_135914.bin.csv.gz', date_pattern='%d.%m.%Y', time_pattern='%H:%M:%S',
-         #                      compression='gzip'):
-          #  FileRead.append(sar)
-           # FileRead.append(FileReadAll)
-            #for ratV in sar:
-             #   FileReadAll.append(ratV)
-        with gzip.open('//192.168.50.30/inotes/personal/s.danilov/data/171214/sar/sar_k10-szp-app01_171214_135914.bin.csv.gz', 'rb') as sar:
-            sarV = sar.readline()
-            FileRead.append(sarV)
-        return FileRead
 
