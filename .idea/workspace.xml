@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3279d907-e790-4436-9751-c11910d9762d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Config.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/GraphicsCreaterUtilCPU.py" afterPath="$PROJECT_DIR$/GraphicsCreaterUtilCPU.py" />
+      <change beforePath="$PROJECT_DIR$/Config.py" afterPath="$PROJECT_DIR$/Config.py" />
       <change beforePath="$PROJECT_DIR$/SQLQuery.py" afterPath="$PROJECT_DIR$/SQLQuery.py" />
       <change beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
+      <change beforePath="$PROJECT_DIR$/templates/Graphics.html" afterPath="$PROJECT_DIR$/templates/Graphics.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +17,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/untitled2$untitled2.coverage" NAME="untitled2 Coverage Results" MODIFIED="1513253955869" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Drawing_graphs$FlaskPower.coverage" NAME="FlaskPower Coverage Results" MODIFIED="1513261927586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Drawing_graphs$app.coverage" NAME="app Coverage Results" MODIFIED="1515650703008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Drawing_graphs$app.coverage" NAME="app Coverage Results" MODIFIED="1515664422890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Drawing_graphs$setup.coverage" NAME="setup Coverage Results" MODIFIED="1513580370592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/londas-3.0" />
   </component>
   <component name="DatabaseView">
@@ -35,11 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1207">
-              <caret line="69" column="3" lean-forward="false" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
+            <state relative-caret-position="276">
+              <caret line="18" column="55" lean-forward="false" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -47,15 +46,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphicsCreaterUtilCPU.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GraphicsCreaterUtilCPU.py">
+      <file leaf-file-name="Config.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="134" column="34" lean-forward="false" selection-start-line="134" selection-start-column="34" selection-end-line="134" selection-end-column="34" />
+            <state relative-caret-position="-629">
+              <caret line="152" column="26" lean-forward="false" selection-start-line="93" selection-start-column="16" selection-end-line="152" selection-end-column="26" />
               <folding>
-                <element signature="e#2821#2942#0" expanded="false" />
-                <element signature="e#6420#6540#0" expanded="false" />
+                <marker date="1515664422730" expanded="true" signature="646:969" ph="select ts.na... v$filespace_usage" />
+                <marker date="1515664422730" expanded="true" signature="646:1031" ph="select ts.na... v$filespace_usage" />
+                <marker date="1515664422730" expanded="true" signature="646:1032" ph="select ts.na... v$filespace_usage" />
+                <marker date="1515664422730" expanded="true" signature="646:1037" ph="select ts.na... v$filespace_usage" />
+                <marker date="1515664422730" expanded="true" signature="4129:4550" ph="SELECT dt.tm... dt" />
+                <marker date="1515664422730" expanded="true" signature="7851:8193" ph="SELECT dt.tm... dt" />
+                <marker date="1515664422730" expanded="true" signature="10005:10144" ph="SELECT dt.tm... dt" />
+                <marker date="1515664422730" expanded="true" signature="12539:12769" ph="SELECT dt.tm... dt" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Graphics.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Graphics.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="31" column="11" lean-forward="false" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -63,26 +78,10 @@
       <file leaf-file-name="SQLQuery.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SQLQuery.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2074">
-              <caret line="122" column="94" lean-forward="false" selection-start-line="122" selection-start-column="94" selection-end-line="122" selection-end-column="94" />
+            <state relative-caret-position="361">
+              <caret line="96" column="40" lean-forward="false" selection-start-line="96" selection-start-column="24" selection-end-line="96" selection-end-column="40" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Config.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding>
-                <marker date="1515652247023" expanded="true" signature="646:969" ph="select ts.na... v$filespace_usage" />
-                <marker date="1515652247023" expanded="true" signature="4060:4481" ph="SELECT dt.tm... dt" />
-                <marker date="1515652247023" expanded="true" signature="7782:8124" ph="SELECT dt.tm... dt" />
-                <marker date="1515652247023" expanded="true" signature="9936:10075" ph="SELECT dt.tm... dt" />
-                <marker date="1515652247023" expanded="true" signature="12470:12700" ph="SELECT dt.tm... dt" />
               </folding>
             </state>
           </provider>
@@ -108,6 +107,8 @@
       <find>csv</find>
       <find>FainWebs</find>
       <find>getUTL</find>
+      <find>print</find>
+      <find>Count_Reestrs_Cards</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -133,12 +134,12 @@
         <option value="$PROJECT_DIR$/ReadCSV.py" />
         <option value="$PROJECT_DIR$/param_Stabs.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/templates/Graphics.html" />
         <option value="$PROJECT_DIR$/GraphicsCreaterUtilCPU.py" />
         <option value="$PROJECT_DIR$/templates/TestGrapics.html" />
         <option value="$PROJECT_DIR$/app.py" />
-        <option value="$PROJECT_DIR$/SQLQuery.py" />
         <option value="$PROJECT_DIR$/Config.py" />
+        <option value="$PROJECT_DIR$/templates/Graphics.html" />
+        <option value="$PROJECT_DIR$/SQLQuery.py" />
       </list>
     </option>
   </component>
@@ -206,6 +207,42 @@
               <item name="Drawing_graphs" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
+            <path>
+              <item name="Drawing_graphs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 (Drawing_graphs) &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="Drawing_graphs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 (Drawing_graphs) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python36-32" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Drawing_graphs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 (Drawing_graphs) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python36-32" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Drawing_graphs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 (Drawing_graphs) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Drawing_graphs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 (Drawing_graphs) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Drawing_graphs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 (Drawing_graphs) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -227,7 +264,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="last_opened_file_path" value="$USER_HOME$/Miniconda3/Lib" />
   </component>
   <component name="RecentsManager">
@@ -525,15 +562,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32" sideWeight="0.5063966" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32" sideWeight="0.4936034" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32" sideWeight="0.4936034" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15938166" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15991472" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -816,13 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Graphics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="14" column="58" lean-forward="false" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/param_Stabs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -835,15 +864,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="625" column="7" lean-forward="false" selection-start-line="625" selection-start-column="7" selection-end-line="625" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1207">
-          <caret line="69" column="3" lean-forward="false" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
           <folding>
-            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#16449#16656#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -859,10 +881,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Graphics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="31" column="11" lean-forward="false" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SQLQuery.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="122" column="94" lean-forward="false" selection-start-line="122" selection-start-column="94" selection-end-line="122" selection-end-column="94" />
+        <state relative-caret-position="361">
+          <caret line="96" column="40" lean-forward="false" selection-start-line="96" selection-start-column="24" selection-end-line="96" selection-end-column="40" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
@@ -871,14 +901,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="-629">
+          <caret line="152" column="26" lean-forward="false" selection-start-line="93" selection-start-column="16" selection-end-line="152" selection-end-column="26" />
           <folding>
-            <marker date="1515652247023" expanded="true" signature="646:969" ph="select ts.na... v$filespace_usage" />
-            <marker date="1515652247023" expanded="true" signature="4060:4481" ph="SELECT dt.tm... dt" />
-            <marker date="1515652247023" expanded="true" signature="7782:8124" ph="SELECT dt.tm... dt" />
-            <marker date="1515652247023" expanded="true" signature="9936:10075" ph="SELECT dt.tm... dt" />
-            <marker date="1515652247023" expanded="true" signature="12470:12700" ph="SELECT dt.tm... dt" />
+            <marker date="1515664422730" expanded="true" signature="646:969" ph="select ts.na... v$filespace_usage" />
+            <marker date="1515664422730" expanded="true" signature="646:1031" ph="select ts.na... v$filespace_usage" />
+            <marker date="1515664422730" expanded="true" signature="646:1032" ph="select ts.na... v$filespace_usage" />
+            <marker date="1515664422730" expanded="true" signature="646:1037" ph="select ts.na... v$filespace_usage" />
+            <marker date="1515664422730" expanded="true" signature="4129:4550" ph="SELECT dt.tm... dt" />
+            <marker date="1515664422730" expanded="true" signature="7851:8193" ph="SELECT dt.tm... dt" />
+            <marker date="1515664422730" expanded="true" signature="10005:10144" ph="SELECT dt.tm... dt" />
+            <marker date="1515664422730" expanded="true" signature="12539:12769" ph="SELECT dt.tm... dt" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="18" column="55" lean-forward="false" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>

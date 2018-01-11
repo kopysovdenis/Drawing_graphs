@@ -24,14 +24,20 @@
   <body>
   <form action=http://192.168.70.127:5000/graphics1 method="post">
       <p>{{ Error }}</p>
+      <p>get_Count_Reestrs_Cards. Введите время начала и окончания теста</p>
+      <ul class="hr">
+          <li>Начало <input name="startTest0" placeholder="Пример: 03-10-2017 13:20" maxlength="16" size="30" value=""></li>
+          <li>Конец <input name="stopTest0" placeholder="Пример: 03-10-2017 19:20" maxlength="16" size="30" value=""></li>
+          <li>Дата <input name="dataTest0" placeholder="Пример: 03-10-2017" maxlength="10" size="30" value=""></li>
+      </ul>
       <p>Расчет нагрузки</p>
       <ul class="hr">
-          <li><input name="start_intense" placeholder="реестров в час, стартовая интенсивность" maxlength="10" size="30" value=""></li>
-          <li><input name="final_intense" placeholder="реестров в час, финишная интенсивность" maxlength="10" size="30" value=""></li>
-          <li><input name="step_length" placeholder="минут, длительность полки" maxlength="10" size="30" value=""></li>
-          <li><input name="interval" placeholder="минут, частота отправки файлов" maxlength="10" size="30" value=""></li>
-          <li><input name="duration" placeholder="минут, длительность теста" maxlength="10" size="30" value=""></li>
-          <li><input name="step_length1" placeholder="interval = 5 :раз в 5 минут" maxlength="15" size="30" value=""></li>
+          <li><input name="start_intense" placeholder="реестров в час, стартовая интенсивность" maxlength="10" size="30" ></li>
+          <li><input name="final_intense" placeholder="реестров в час, финишная интенсивность" maxlength="10" size="30" ></li>
+          <li><input name="step_length" placeholder="минут, длительность полки" maxlength="10" size="30" ></li>
+          <li><input name="interval" placeholder="минут, частота отправки файлов" maxlength="10" size="30" ></li>
+          <li><input name="duration" placeholder="минут, длительность теста" maxlength="10" size="30" ></li>
+          <li><input name="step_length1" placeholder="interval = 5 :раз в 5 минут" maxlength="15" size="30" ></li>
       </ul>
       <p> Вставьте данные теста</p>
       <p><textarea name="ValuesTest" placeholder="Данные из LR" rows="20" cols="40"></textarea></p>

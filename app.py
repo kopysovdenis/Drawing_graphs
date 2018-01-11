@@ -155,10 +155,11 @@ def graphics():
        Processed = sql_q.getSummAllElements(sql_q.getPerformance(filessPerfomance)['Processed'])
        LabelsProcessed ='Processed'
 # --График 6--Время обработки реестров----------------------------------------------------------------------------------
-
        avg_sd = sql_q.getCard(fillessCard)['AVG_SD']
        print(avg_sd)
        legendAVG_SD = 'Среднее время обработки реестров'
+
+
 
        sumDelivered = sql_q.getSummAllElements(final_delivered_load)
        legendSumDelivered = 'Подача нагрузки с накоплением'
@@ -181,6 +182,7 @@ def graphics():
                               LabelsProcessed = LabelsProcessed, Processed = Processed
                               )
    except Exception as e:
+       print(request.form['startTest0'])
        return render_template('Graphics.html', Error = 'Попробуй еще РАЗ!'+'\n'+str(e))
 
 if __name__ == '__main__':

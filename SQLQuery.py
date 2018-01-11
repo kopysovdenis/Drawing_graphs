@@ -54,7 +54,6 @@ class sqlQuery():
             cur = connect.cursor()
             cur.execute(Config.StatisticTable)
             mast = list(cur)
-            print(mast)
             cur.close()
             connect.close()
             return mast
@@ -70,7 +69,7 @@ class sqlQuery():
 #            valuse.append(row)
 #        return valuse
 
-    def getQuerySql_count(self):
+    def getQuerySql_count(self,beg_date,end_date, data):
         try:
             """
             Переменные для SQL запроса
@@ -89,8 +88,8 @@ class sqlQuery():
             return mast
         except Exception as e:
             return e
-
-    def get_Count_Reestrs_Cards(self):
+# Аналог getPerformance
+    def get_Count_Reestrs_Cards(self,beg_date,end_date, data):
         try:
             """
             Переменные для SQL запроса
@@ -110,7 +109,9 @@ class sqlQuery():
         except Exception as e:
             return e
 
-    def get_Time_Reestrs_Cards(self):
+
+# Аналог getCard
+    def get_Time_Reestrs_Cards(self,beg_date,end_date):
         try:
             """
             Переменные для SQL запроса
@@ -130,7 +131,7 @@ class sqlQuery():
             return e
 
 
-    def getQuerySql_time(self):
+    def getQuerySql_time(self,beg_date,end_date):
         try:
             """
             Переменные для SQL запроса

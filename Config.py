@@ -23,7 +23,8 @@ sql = """
 StatisticTable = """select ts.name TNAME ,round(sum(allocated_space)/sum(file_maxsize)*100) PERCENT_USED
                                             from v$filespace_usage fu
                                                 JOIN v$tablespace ts ON (fu.tablespace_id = ts.ts#)
-                                                    GROUP BY ts.name"""
+                                                    GROUP BY ts.name
+                                                    ORDER by 2 DESC """
 
 getQuerySql_count = """
             WITH dt
