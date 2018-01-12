@@ -14,12 +14,12 @@ class sqlQuery():
     def __init__(self):
         pass
 
-    def functions(self, inquery):
+    def requestQuery(self, request):
         try:
             tns = cx_Oracle.makedsn(host, port, SID)
             connect = cx_Oracle.connect(UserName, pswd, tns)
             cur = connect.cursor()
-            cur.execute(inquery)
+            cur.execute(request)
             outExt = list(cur)
             print(outExt)
             cur.close()
@@ -28,37 +28,21 @@ class sqlQuery():
         except Exception as e:
             return e
 
+    def functions(self, inquery):
+            return self.requestQuery(inquery)
+
+
     def ClearOrDB(self, days):
         try:
             if int(days) > 0:
-                try:
-                    tns = cx_Oracle.makedsn(host, port, SID)
-                    connect = cx_Oracle.connect(UserName, pswd, tns)
-                    cur = connect.cursor()
-                    cur.execute(Config.sql.format(days= days))
-                    outText = list(cur)
-                    cur.close()
-                    connect.close()
-                    return outText
-                except Exception as e:
-                    return e
+                return self.requestQuery(Config.sql.format(days=days))
             else:
                 return 'Вы ввели не коррктное число'
         except Exception as e:
             return e
 
     def StatisticTable(self):
-        try:
-            tns = cx_Oracle.makedsn(host, port, SID)
-            connect = cx_Oracle.connect(UserName, pswd, tns)
-            cur = connect.cursor()
-            cur.execute(Config.StatisticTable)
-            mast = list(cur)
-            cur.close()
-            connect.close()
-            return mast
-        except Exception as e:
-            return e
+        return self.requestQuery(Config.StatisticTable)
 
 #    def SqlAlchimQuery(self):
 #        valuse = []
@@ -70,85 +54,20 @@ class sqlQuery():
 #        return valuse
 
     def getQuerySql_count(self,beg_date,end_date, data):
-        try:
-            """
-            Переменные для SQL запроса
-            """
-            start = '26-06-2017 16:10'
-            stop = '26-06-2017 22:10'
-            data = '26.06.2017'
-            tns = cx_Oracle.makedsn(host, port, SID)
-            connect = cx_Oracle.connect(UserName, pswd, tns)
-            cur = connect.cursor()
-            cur.execute(Config.getQuerySql_count.format(start = start, stop = stop, data = data))
-            mast = list(cur)
-            print(mast)
-            cur.close()
-            connect.close()
-            return mast
-        except Exception as e:
-            return e
+        return self.requestQuery(Config.getQuerySql_count.format(beg_date = beg_date, end_date = end_date, data = data))
+
 # Аналог getPerformance
     def get_Count_Reestrs_Cards(self,beg_date,end_date, data):
-        try:
-            """
-            Переменные для SQL запроса
-            """
-            beg_date = '03-10-2017 13:20'
-            end_date = '03-10-2017 19:20'
-            data = '03.10.2017'
-            tns = cx_Oracle.makedsn(host, port, SID)
-            connect = cx_Oracle.connect(UserName, pswd, tns)
-            cur = connect.cursor()
-            cur.execute(Config.Count_Reestrs_Cards.format(beg_date = beg_date, end_date = end_date, data = data))
-            mast = list(cur)
-            print(mast)
-            cur.close()
-            connect.close()
-            return mast
-        except Exception as e:
-            return e
+        return self.requestQuery(Config.Count_Reestrs_Cards.format(beg_date=beg_date, end_date=end_date, data=data))
 
 
 # Аналог getCard
     def get_Time_Reestrs_Cards(self,beg_date,end_date):
-        try:
-            """
-            Переменные для SQL запроса
-            """
-            beg_date = '03-10-2017 13:20'
-            end_date = '03-10-2017 19:20'
-            tns = cx_Oracle.makedsn(host, port, SID)
-            connect = cx_Oracle.connect(UserName, pswd, tns)
-            cur = connect.cursor()
-            cur.execute(Config.Time_Reestrs_Cards.format(beg_date = beg_date, end_date = end_date))
-            mast = list(cur)
-            print(mast)
-            cur.close()
-            connect.close()
-            return mast
-        except Exception as e:
-            return e
+        return self.requestQuery(Config.Time_Reestrs_Cards.format(beg_date=beg_date, end_date=end_date))
 
 
     def getQuerySql_time(self,beg_date,end_date):
-        try:
-            """
-            Переменные для SQL запроса
-            """
-            beg_date = '04-09-2017 11:30'
-            end_date = '04-09-2017 17:30'
-            tns = cx_Oracle.makedsn(host, port, SID)
-            connect = cx_Oracle.connect(UserName, pswd, tns)
-            cur = connect.cursor()
-            cur.execute(Config.getQuerySql_time.format(beg_date = beg_date, end_date = end_date))
-            mast = list(cur)
-            print(mast)
-            cur.close()
-            connect.close()
-            return mast
-        except Exception as e:
-            return e
+        return self.requestQuery(Config.getQuerySql_time.format(beg_date=beg_date, end_date=end_date))
 
     def getUTL(self,filess):
         VarCh1 = pd.read_csv(filess, sep=';', header=None,
